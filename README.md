@@ -95,12 +95,13 @@ The frontend build compresses images in `public/generated/` and regenerates favi
 
 The repo includes a root `vercel.json` that builds the SPA and deploys the Express API as a serverless function (`api/index.ts`).
 
-1. Import the repo in Vercel with **root directory = repo root** (not `artifacts/`)
-2. Framework preset: **Other** (`vercel.json` controls install/build)
-3. Add all required env vars from `.env.example` in **Vercel → Settings → Environment Variables** (Production)
-4. Set build-time vars: `VITE_CLERK_PUBLISHABLE_KEY`, `VITE_CLERK_PROXY_URL=/api/__clerk`, `BASE_PATH=/`
-5. In Clerk Dashboard, add your Vercel URL to **Allowed origins**
-6. Deploy and verify:
+1. Import the repo in Vercel with **Root Directory = repository root** (leave blank / `.`) — **not** `artifacts/nayab-furniture`
+2. Framework preset: **Other** (`vercel.json` controls install/build/output)
+3. In Project Settings → General, leave **Output Directory** empty or set it to `public`
+4. Add all required env vars from `.env.example` in **Vercel → Settings → Environment Variables** (Production)
+5. Set build-time vars: `VITE_CLERK_PUBLISHABLE_KEY`, `VITE_CLERK_PROXY_URL=/api/__clerk`, `BASE_PATH=/`
+6. In Clerk Dashboard, add your Vercel URL to **Allowed origins**
+7. Deploy and verify:
    - `GET /api/healthz` → `{"status":"ok"}`
    - Site loads, admin sign-in works, uploads return Supabase URLs
 
