@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "Nayab Furniture"
+version = "1.0.0"
+id = "artifacts/nayab-furniture"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19064
+
+[services.development]
+run = "pnpm --filter @workspace/nayab-furniture run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nayab-furniture", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/nayab-furniture/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19064"
+BASE_PATH = "/"
