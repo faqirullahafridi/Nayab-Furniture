@@ -98,9 +98,9 @@ The repo includes a root `vercel.json` that builds the SPA and deploys the Expre
 1. Import the repo in Vercel with **Root Directory = repository root** (leave blank / `.`) — **not** `artifacts/nayab-furniture`
 2. Framework preset: **Other** (`vercel.json` controls install/build/output)
 3. In Project Settings → General:
-   - **Root Directory:** leave blank (repository root) — required for the API
-   - **Output Directory:** leave blank, or set to `artifacts/nayab-furniture/dist/public`
-   - If you previously set Output Directory to `public`, either clear it or redeploy after pulling — the build script also syncs a `public/` folder as a fallback
+   - **Root Directory:** leave blank (repository root) — required for the API at `api/index.ts`
+   - **Output Directory:** leave blank or set to `public` (the build syncs Vite output into `public/` automatically)
+   - If deploys still fail, check that Root Directory is **not** set to a subfolder unless you intend a frontend-only deploy
 4. Add all required env vars from `.env.example` in **Vercel → Settings → Environment Variables** (Production)
 5. Set build-time vars: `VITE_CLERK_PUBLISHABLE_KEY`, `VITE_CLERK_PROXY_URL=/api/__clerk`, `BASE_PATH=/`
 6. In Clerk Dashboard, add your Vercel URL to **Allowed origins**

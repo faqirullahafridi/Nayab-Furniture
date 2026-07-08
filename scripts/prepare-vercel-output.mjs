@@ -15,12 +15,15 @@ function syncToPublic(target) {
   console.log(`Synced static output → ${target}`);
 }
 
-// Targets for vercel.json / dashboard "Output Directory: public"
-const publicTargets = new Set([path.join(repoRoot, "public")]);
+// Vite writes to dist/public; Vercel dashboard often expects "public" relative to Root Directory.
+const publicTargets = new Set([
+  path.join(repoRoot, "public"),
+  path.join(repoRoot, "artifacts/nayab-furniture/public"),
+]);
 
 if (process.env.VERCEL === "1") {
-  // Root Directory may be repo root or artifacts/nayab-furniture
-  publicTargets.add(path.join(repoRoot, "artifacts/nayab-furniture/public"));
+  // Root Directory is often artifacts/api-server or artifacts/nayab-furniture in Vercel UI.
+  publicTargets.add(path.join(repoRoot, "artifacts/api-server/public"));
   publicTargets.add(path.join(process.cwd(), "public"));
 }
 
