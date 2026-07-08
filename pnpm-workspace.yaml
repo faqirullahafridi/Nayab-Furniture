@@ -60,7 +60,9 @@ minimumReleaseAge: 1440
 
 minimumReleaseAgeExclude: []
 
-onlyBuiltDependencies: '["sharp"]'
+onlyBuiltDependencies:
+  - sharp
+  - esbuild
 
 overrides:
   # Linux CI/production builds: exclude unused platform binaries to speed installs.
